@@ -1,27 +1,27 @@
 [gd_scene load_steps=8 format=3 uid="uid://dlpto0jajjis7"]
 
 [ext_resource type="Script" path="res://Scripts/Player/bullet.gd" id="1_hlcxa"]
-[ext_resource type="Texture2D" uid="uid://blrkkstvmbvm3" path="res://assets/shuriken.png" id="2_cdwjq"]
+[ext_resource type="Texture2D" uid="uid://blrkkstvmbvm3" path="res://assets/shuriken.png" id="2_cipca"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5p0co"]
-radius = 4.0
+radius = 6.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ridbq"]
-atlas = ExtResource("2_cdwjq")
+[sub_resource type="AtlasTexture" id="AtlasTexture_ealwd"]
+atlas = ExtResource("2_cipca")
 region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fnjeq"]
-atlas = ExtResource("2_cdwjq")
+[sub_resource type="AtlasTexture" id="AtlasTexture_lmluf"]
+atlas = ExtResource("2_cipca")
 region = Rect2(16, 0, 16, 16)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_8egmd"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_b7cu1"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ridbq")
+"texture": SubResource("AtlasTexture_ealwd")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_fnjeq")
+"texture": SubResource("AtlasTexture_lmluf")
 }],
 "loop": true,
 "name": &"spin",
@@ -29,9 +29,8 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_djpbn"]
-radius = 8.0
 
-[node name="Bullet" type="CharacterBody2D"]
+[node name="PlayerBullet" type="CharacterBody2D"]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_hlcxa")
@@ -40,11 +39,10 @@ script = ExtResource("1_hlcxa")
 shape = SubResource("CircleShape2D_5p0co")
 
 [node name="PlayerBullet" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_8egmd")
+sprite_frames = SubResource("SpriteFrames_b7cu1")
 animation = &"spin"
 
 [node name="Area2D" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 collision_mask = 2
 

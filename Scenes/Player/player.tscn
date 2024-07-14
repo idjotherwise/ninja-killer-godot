@@ -1,24 +1,21 @@
 [gd_scene load_steps=5 format=3 uid="uid://6v6uv5d52cdf"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_lm4q6"]
-[ext_resource type="Texture2D" uid="uid://d4l0naellnq6h" path="res://assets/character.png" id="2_f1ikd"]
+[ext_resource type="Texture2D" uid="uid://bywf47ekr7mgv" path="res://assets/enemy.png" id="2_e5xv7"]
 [ext_resource type="Script" path="res://Scripts/Player/BulletPool.gd" id="3_eteda"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5x0nw"]
-size = Vector2(12, 13)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oorg5"]
+size = Vector2(16, 16)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_lm4q6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1.5)
-shape = SubResource("RectangleShape2D_5x0nw")
+shape = SubResource("RectangleShape2D_oorg5")
 
 [node name="Player" type="Sprite2D" parent="."]
-texture = ExtResource("2_f1ikd")
+texture = ExtResource("2_e5xv7")
 flip_h = true
-hframes = 3
-frame = 1
 
 [node name="Bullets" type="Node" parent="."]
 script = ExtResource("3_eteda")

@@ -39,10 +39,10 @@ func nearest_enemy_to(pos: Vector2):
 	return closest_mob
 	
 func reset_mob(mob: Node) -> void:
-	mob.position = Vector2(-10000, -10000)
+	mob.global_position = Vector2(-10000, -10000)
 	mob.get_node("CollisionShape2D").disabled = false
 	mob.isAlive = true
-	mob.health = 2
+	mob.health = 5
 	mob.get_node("HealthBar").value = 0
 	mob.hide()
 

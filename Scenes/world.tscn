@@ -53,6 +53,7 @@ layer_0/tile_data = PackedInt32Array(0, 1, 0, 65536, 1, 0, 131072, 1, 0, 196608,
 
 [node name="Player" parent="." instance=ExtResource("4_sbl3j")]
 position = Vector2(116, 122)
+collision_layer = 0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 limit_left = 0

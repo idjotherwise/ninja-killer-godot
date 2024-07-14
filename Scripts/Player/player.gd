@@ -4,6 +4,7 @@ var speed: int = 75;
 var direction: Vector2 = Vector2(0, 1);
 @onready var bullet_pool: Node = get_node("Bullets");
 @onready var enemies_pool: Node = get_parent().get_node("Portal");
+var player: bool = true;
 
 func _physics_process(delta: float) -> void:
 	var inputDir: Vector2 = Vector2(
@@ -12,23 +13,23 @@ func _physics_process(delta: float) -> void:
 		).normalized()
 		
 	if inputDir.x > 0:
-		get_node("Player").frame = 1
+		#get_node("Player").frame = 1
 		get_node("Player").flip_h = false
 		# check if player is moving right
 		direction = inputDir
 	elif inputDir.x < 0:
 		# check if player is moving left
-		get_node("Player").frame = 1
+		#get_node("Player").frame = 1
 		get_node("Player").flip_h = true
 		direction = inputDir
 	elif inputDir.y > 0:
 		# moving down
-		get_node("Player").frame = 0
+		#get_node("Player").frame = 0
 		get_node("Player").flip_h = false
 		direction = inputDir
 	elif inputDir.y < 0:
 		# moving up
-		get_node("Player").frame=2
+		#get_node("Player").frame=2
 		get_node("Player").flip_h = false
 		direction = inputDir
 	get_node("SpawnPoint").position = direction * 5
@@ -37,11 +38,9 @@ func _physics_process(delta: float) -> void:
 		var bulletTemp = bullet_pool.get_bullet(nearest_mob)
 		var bulletDir;
 		bulletTemp.global_position = get_node("SpawnPoint").global_position
-		if nearest_mob:
-			bulletDir = (nearest_mob.global_position - bulletTemp.global_position).normalized()
-		else:
-			bulletDir = direction
-		bulletTemp.velocity = bulletDir * 100
+		
+		bulletTemp.target = nearest_mob
+		bulletTemp.velocity = direction * 100;
 		bulletTemp.show()
 		bulletTemp.get_node("PlayerBullet").play("spin")
 	

@@ -1,15 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://cf4bsoll5cytr"]
+[gd_scene load_steps=7 format=3 uid="uid://cf4bsoll5cytr"]
 
 [ext_resource type="Script" path="res://Scripts/AI/sneak_mob.gd" id="1_s5uei"]
-[ext_resource type="Texture2D" uid="uid://bywf47ekr7mgv" path="res://assets/enemy.png" id="2_2ck1s"]
+[ext_resource type="Texture2D" uid="uid://d4l0naellnq6h" path="res://assets/character.png" id="2_5slch"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h0dld"]
-size = Vector2(16, 16.5)
+size = Vector2(12, 11)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e7f01"]
 bg_color = Color(0.992157, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v0vok"]
+bg_color = Color(0.180392, 1, 0.184314, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x110o"]
+radius = 9.0
 
 [node name="Sneak mob" type="CharacterBody2D"]
 collision_layer = 2
@@ -17,21 +21,29 @@ collision_mask = 2
 script = ExtResource("1_s5uei")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 0.25)
+position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_h0dld")
 
 [node name="GuardianSerpentOld" type="Sprite2D" parent="."]
-texture = ExtResource("2_2ck1s")
+texture = ExtResource("2_5slch")
+hframes = 3
 
 [node name="HealthBar" type="ProgressBar" parent="."]
-offset_left = 12.0
+offset_left = 8.0
 offset_top = 10.0
-offset_right = 14.0
-offset_bottom = 34.0
+offset_right = 9.0
+offset_bottom = 26.0
 rotation = 1.5713
 theme_override_styles/background = SubResource("StyleBoxFlat_e7f01")
 theme_override_styles/fill = SubResource("StyleBoxFlat_v0vok")
-max_value = 2.0
+max_value = 5.0
 step = 1.0
-fill_mode = 2
+fill_mode = 3
 show_percentage = false
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_x110o")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
