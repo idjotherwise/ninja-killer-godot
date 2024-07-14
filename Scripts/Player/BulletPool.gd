@@ -13,11 +13,12 @@ func _ready() -> void:
 		add_child(bulletTemp)
 		
 
-func get_bullet() -> Node:
+func get_bullet(target: Node) -> Node:
 	for bullet in bullet_pool:
 		if not bullet.visible:
 			return bullet
 	var new_bullet: Node = bullet_scene.instantiate()
+	new_bullet.target = target
 	new_bullet.hide()
 	bullet_pool.append(new_bullet)
 	add_child(new_bullet)

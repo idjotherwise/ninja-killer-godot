@@ -5,8 +5,8 @@ var mob_scene: PackedScene = preload("res://Scenes/AI/sneak_mob.tscn")
 var pool_size: int = 10;
 var mob_pool: Array = [];
 
-
 @onready var timer: Timer = get_node("Timer");
+@onready var hud = get_parent().get_node("HUD");
 
 func _ready() -> void:
 	for i in range(pool_size):
@@ -25,13 +25,29 @@ func get_mob() -> Node:
 	mob_pool.append(new_mob)
 	add_child(new_mob)
 	return new_mob
+
+func nearest_enemy_to(pos: Vector2):
+	var smallest_dist: float = 0.0;
+	var closest_mob: Node;
+	for mob in mob_pool:
+		if not mob.visible:
+			continue
+		var distance_to_pos = mob.global_position.distance_squared_to(pos)
+		if distance_to_pos < smallest_dist or smallest_dist == 0.0:
+			smallest_dist = distance_to_pos
+			closest_mob = mob
+	return closest_mob
 	
 func reset_mob(mob: Node) -> void:
 	mob.position = Vector2(-10000, -10000)
 	mob.get_node("CollisionShape2D").disabled = false
 	mob.isAlive = true
 	mob.health = 2
+	mob.get_node("HealthBar").value = 0
 	mob.hide()
+
+	hud.increment_score()
+	
 
 
 func _on_timer_timeout() -> void:

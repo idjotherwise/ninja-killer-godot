@@ -1,12 +1,35 @@
-[gd_scene load_steps=5 format=3 uid="uid://dlpto0jajjis7"]
+[gd_scene load_steps=8 format=3 uid="uid://dlpto0jajjis7"]
 
-[ext_resource type="Texture2D" uid="uid://crj4tgcjh512v" path="res://Bullet-Hell-Assets/player_bullet.png" id="1_062kn"]
 [ext_resource type="Script" path="res://Scripts/Player/bullet.gd" id="1_hlcxa"]
+[ext_resource type="Texture2D" uid="uid://blrkkstvmbvm3" path="res://assets/shuriken.png" id="2_cdwjq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5p0co"]
-radius = 6.0
+radius = 4.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ridbq"]
+atlas = ExtResource("2_cdwjq")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fnjeq"]
+atlas = ExtResource("2_cdwjq")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8egmd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ridbq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fnjeq")
+}],
+"loop": true,
+"name": &"spin",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_djpbn"]
+radius = 8.0
 
 [node name="Bullet" type="CharacterBody2D"]
 collision_layer = 0
@@ -16,10 +39,12 @@ script = ExtResource("1_hlcxa")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_5p0co")
 
-[node name="PlayerBullet" type="Sprite2D" parent="."]
-texture = ExtResource("1_062kn")
+[node name="PlayerBullet" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_8egmd")
+animation = &"spin"
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 2
 

@@ -1,7 +1,12 @@
 extends CharacterBody2D
 
+var target: Node;
+var speed: float
+
 func _process(delta):
 	self.rotation += 1
+	if target:
+		velocity = (self.target.global_position - self.global_position).normalized() * speed
 	move_and_slide()
 
 
