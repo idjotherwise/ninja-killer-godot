@@ -3,10 +3,13 @@
 [ext_resource type="Script" path="res://Scripts/HUD/HUD.gd" id="1_6np3q"]
 
 [sub_resource type="SystemFont" id="SystemFont_yp1ds"]
+subpixel_positioning = 0
 
 [sub_resource type="SystemFont" id="SystemFont_ryn1e"]
+subpixel_positioning = 0
 
 [sub_resource type="SystemFont" id="SystemFont_but8f"]
+subpixel_positioning = 0
 
 [sub_resource type="Animation" id="Animation_rwjew"]
 length = 0.001

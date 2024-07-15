@@ -14,24 +14,23 @@ func _physics_process(delta: float) -> void:
 		
 	if inputDir.x > 0:
 		# TODO: reenable these animations once there are multiple frames for the player
-		# get_node("Player").frame = 1
-		get_node("Player").flip_h = false
+		get_node("Player").frame = 2
 		# check if player is moving right
 		direction = inputDir
 	elif inputDir.x < 0:
 		# check if player is moving left
-		#get_node("Player").frame = 1
-		get_node("Player").flip_h = true
+		get_node("Player").frame = 3
+
 		direction = inputDir
 	elif inputDir.y > 0:
 		# moving down
-		#get_node("Player").frame = 0
-		get_node("Player").flip_h = false
+		get_node("Player").frame = 1
+
 		direction = inputDir
 	elif inputDir.y < 0:
 		# moving up
-		#get_node("Player").frame=2
-		get_node("Player").flip_h = false
+		get_node("Player").frame= 0
+
 		direction = inputDir
 	get_node("SpawnPoint").position = direction * 5
 	if Input.is_action_just_pressed("shoot"):

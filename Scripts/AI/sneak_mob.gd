@@ -50,4 +50,5 @@ func _on_player_detection_body_entered(body: Node2D):
 			Game.player_hp -= 1
 			hud.update_health(Game.player_hp)
 			if Game.player_hp <= 0:
-				get_tree().reload_current_scene();
+				get_tree().reload_current_scene()
+				Game.player_hp = 10;
