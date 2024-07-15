@@ -6,11 +6,11 @@ var direction: Vector2 = Vector2(0, 1);
 @onready var enemies_pool: Node = get_parent().get_node("Portal");
 var player: bool = true;
 var controlls: Dictionary = {
-	"left": "ui_left",
-	"right": "ui_right",
-	"up": "ui_up",
-	"down": "ui_down",
-	"shoot": "shoot",
+	"left": "ui_left2",
+	"right": "ui_right2",
+	"up": "ui_up2",
+	"down": "ui_down2",
+	"shoot": "shoot2",
 }
 func _physics_process(delta: float) -> void:
 	var inputDir: Vector2 = Vector2(
@@ -52,3 +52,4 @@ func _physics_process(delta: float) -> void:
 	velocity = inputDir * speed;
 	move_and_slide()
 	
+
