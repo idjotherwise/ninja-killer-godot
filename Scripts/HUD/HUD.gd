@@ -18,3 +18,6 @@ func update_score(value: int) -> void:
 func increment_score() -> void:
 	score += 1
 	update_score(score)
+
+func update_health(value: int) -> void:
+	$ScoreBox/HBoxContainer/Health.text = str(value) + '<3'

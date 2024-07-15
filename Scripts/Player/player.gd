@@ -13,7 +13,8 @@ func _physics_process(delta: float) -> void:
 		).normalized()
 		
 	if inputDir.x > 0:
-		#get_node("Player").frame = 1
+		# TODO: reenable these animations once there are multiple frames for the player
+		# get_node("Player").frame = 1
 		get_node("Player").flip_h = false
 		# check if player is moving right
 		direction = inputDir
@@ -36,14 +37,13 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("shoot"):
 		var nearest_mob = enemies_pool.nearest_enemy_to(self.global_position);
 		var bulletTemp = bullet_pool.get_bullet(nearest_mob)
-		var bulletDir;
 		bulletTemp.global_position = get_node("SpawnPoint").global_position
 		
-		bulletTemp.target = nearest_mob
+		bulletTemp.target = nearest_mob;
 		bulletTemp.velocity = direction * 100;
-		bulletTemp.show()
-		bulletTemp.get_node("PlayerBullet").play("spin")
+		bulletTemp.show();
+		bulletTemp.get_node("PlayerBullet").play("spin");
 	
-	velocity = inputDir * speed
+	velocity = inputDir * speed;
 	move_and_slide()
 	

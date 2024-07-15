@@ -1,10 +1,51 @@
-[gd_scene load_steps=8 format=3 uid="uid://dmmioo7nr2o5j"]
+[gd_scene load_steps=9 format=3 uid="uid://dmmioo7nr2o5j"]
 
 [ext_resource type="Script" path="res://Scripts/HUD/HUD.gd" id="1_6np3q"]
+
+[sub_resource type="SystemFont" id="SystemFont_yp1ds"]
 
 [sub_resource type="SystemFont" id="SystemFont_ryn1e"]
 
 [sub_resource type="SystemFont" id="SystemFont_but8f"]
+
+[sub_resource type="Animation" id="Animation_rwjew"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Message:theme_override_font_sizes/font_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [64]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Message:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Message:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_n45af"]
 resource_name = "init"
@@ -74,45 +115,6 @@ tracks/2/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_rwjew"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Message:theme_override_font_sizes/font_size")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [64]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Message:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Message:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ikqac"]
 _data = {
 "RESET": SubResource("Animation_rwjew"),
@@ -139,6 +141,12 @@ theme_override_constants/margin_bottom = 20
 [node name="HBoxContainer" type="HBoxContainer" parent="ScoreBox"]
 layout_mode = 2
 alignment = 2
+
+[node name="Health" type="Label" parent="ScoreBox/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_yp1ds")
+theme_override_font_sizes/font_size = 16
+text = "10 <3"
 
 [node name="Label" type="Label" parent="ScoreBox/HBoxContainer"]
 layout_mode = 2

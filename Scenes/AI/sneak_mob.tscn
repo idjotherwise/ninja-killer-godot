@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cf4bsoll5cytr"]
+[gd_scene load_steps=13 format=3 uid="uid://cf4bsoll5cytr"]
 
 [ext_resource type="Script" path="res://Scripts/AI/sneak_mob.gd" id="1_s5uei"]
 [ext_resource type="Texture2D" uid="uid://d4l0naellnq6h" path="res://assets/character.png" id="2_5slch"]
+[ext_resource type="Texture2D" uid="uid://dn4i4ulylcpgk" path="res://assets/death_animation.png" id="3_syg2o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h0dld"]
 size = Vector2(12, 11)
@@ -12,10 +13,46 @@ bg_color = Color(0.992157, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v0vok"]
 bg_color = Color(0.180392, 1, 0.184314, 1)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_x110o"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ko5sm"]
+atlas = ExtResource("3_syg2o")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nkv20"]
+atlas = ExtResource("3_syg2o")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rhwy1"]
+atlas = ExtResource("3_syg2o")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j5ouy"]
+atlas = ExtResource("3_syg2o")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wppf5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ko5sm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nkv20")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rhwy1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j5ouy")
+}],
+"loop": false,
+"name": &"Death",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5a1i3"]
 radius = 9.0
 
-[node name="Sneak mob" type="CharacterBody2D"]
+[node name="Enemy" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_s5uei")
@@ -41,9 +78,16 @@ step = 1.0
 fill_mode = 3
 show_percentage = false
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Anim" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_wppf5")
+animation = &"Death"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_x110o")
+[node name="PlayerDetection" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
+shape = SubResource("CircleShape2D_5a1i3")
+
+[connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]

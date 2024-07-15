@@ -10,17 +10,17 @@ var mob_pool: Array = [];
 
 func _ready() -> void:
 	for i in range(pool_size):
-		var mobTemp: Node = mob_scene.instantiate()
-		mobTemp.hide()
-		mob_pool.append(mobTemp)
-		add_child(mobTemp)
+		var mob: Node = mob_scene.instantiate()
+		mob.hide()
+		mob_pool.append(mob)
+		add_child(mob)
 		
 
-func get_mob() -> Node:
+func get_mob() -> Node2D:
 	for mob in mob_pool:
 		if not mob.visible:
 			return mob
-	var new_mob: Node = mob_scene.instantiate()
+	var new_mob: Node2D = mob_scene.instantiate() as Node2D
 	new_mob.hide()
 	mob_pool.append(new_mob)
 	add_child(new_mob)
@@ -45,9 +45,7 @@ func reset_mob(mob: Node) -> void:
 	mob.health = 5
 	mob.get_node("HealthBar").value = 0
 	mob.hide()
-
 	hud.increment_score()
-	
 
 
 func _on_timer_timeout() -> void:

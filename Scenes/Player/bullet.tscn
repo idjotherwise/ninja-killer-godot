@@ -32,7 +32,7 @@ animations = [{
 
 [node name="PlayerBullet" type="CharacterBody2D"]
 collision_layer = 0
-collision_mask = 0
+collision_mask = 2
 script = ExtResource("1_hlcxa")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
