@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://6v6uv5d52cdf"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_lm4q6"]
-[ext_resource type="Texture2D" uid="uid://bywf47ekr7mgv" path="res://assets/enemy.png" id="2_e5xv7"]
+[ext_resource type="Texture2D" uid="uid://bywf47ekr7mgv" path="res://assets/player1.png" id="2_6ccmp"]
 [ext_resource type="Script" path="res://Scripts/Player/BulletPool.gd" id="3_eteda"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oorg5"]
@@ -16,8 +16,8 @@ script = ExtResource("1_lm4q6")
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_oorg5")
 
-[node name="Player" type="Sprite2D" parent="."]
-texture = ExtResource("2_e5xv7")
+[node name="Character" type="Sprite2D" parent="."]
+texture = ExtResource("2_6ccmp")
 hframes = 4
 frame = 3
 
