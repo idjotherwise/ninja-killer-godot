@@ -1,10 +1,11 @@
 extends CharacterBody2D
 
+
 var speed: int = 75;
 var direction: Vector2 = Vector2(0, 1);
 @onready var bullet_pool: Node = get_node("Bullets");
 @onready var enemies_pool: Node = get_parent().get_node("Portal");
-var player: bool = true;
+var is_player: bool = true;
 var controlls: Dictionary = {
 	"left": "ui_left2",
 	"right": "ui_right2",

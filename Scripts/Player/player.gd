@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+var is_player: bool = true;
 var speed: int = 75;
 var direction: Vector2 = Vector2(0, 1);
 @onready var bullet_pool: Node = get_node("Bullets");

@@ -1,9 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://dmmioo7nr2o5j"]
+[gd_scene load_steps=12 format=3 uid="uid://dmmioo7nr2o5j"]
 
 [ext_resource type="Script" path="res://Scripts/HUD/HUD.gd" id="1_6np3q"]
+[ext_resource type="Script" path="res://Scripts/HUD/Health.gd" id="2_ueasb"]
+[ext_resource type="Script" path="res://Scripts/HUD/Score.gd" id="3_eipdr"]
 
-[sub_resource type="SystemFont" id="SystemFont_yp1ds"]
-subpixel_positioning = 0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vrqpb"]
+bg_color = Color(0.992157, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uptg3"]
+bg_color = Color(0.180392, 1, 0.184314, 1)
 
 [sub_resource type="SystemFont" id="SystemFont_ryn1e"]
 subpixel_positioning = 0
@@ -128,12 +133,28 @@ _data = {
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_6np3q")
 
+[node name="Health" type="ProgressBar" parent="."]
+offset_left = 422.0
+offset_top = 11.0
+offset_right = 559.0
+offset_bottom = 25.0
+theme_override_styles/background = SubResource("StyleBoxFlat_vrqpb")
+theme_override_styles/fill = SubResource("StyleBoxFlat_uptg3")
+max_value = 10.0
+step = 1.0
+value = 10.0
+show_percentage = false
+script = ExtResource("2_ueasb")
+
 [node name="ScoreBox" type="MarginContainer" parent="."]
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -23.0
+offset_left = 2.0
+offset_top = -132.0
+offset_right = 2.0
+offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/margin_left = 20
@@ -144,12 +165,6 @@ theme_override_constants/margin_bottom = 20
 [node name="HBoxContainer" type="HBoxContainer" parent="ScoreBox"]
 layout_mode = 2
 alignment = 2
-
-[node name="Health" type="Label" parent="ScoreBox/HBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = SubResource("SystemFont_yp1ds")
-theme_override_font_sizes/font_size = 16
-text = "10 <3"
 
 [node name="Label" type="Label" parent="ScoreBox/HBoxContainer"]
 layout_mode = 2
@@ -162,6 +177,7 @@ vertical_alignment = 3
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "100"
+script = ExtResource("3_eipdr")
 
 [node name="Message" type="Label" parent="."]
 visible = false

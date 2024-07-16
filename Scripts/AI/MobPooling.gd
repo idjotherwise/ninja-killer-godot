@@ -45,7 +45,7 @@ func reset_mob(mob: Node) -> void:
 	mob.health = 5
 	mob.get_node("HealthBar").value = 0
 	mob.hide()
-	hud.increment_score()
+	Game.score += 1
 
 
 func _on_timer_timeout() -> void:

@@ -1,13 +1,15 @@
 [gd_scene load_steps=5 format=3 uid="uid://bll485eiaqbpj"]
 
 [ext_resource type="Texture2D" uid="uid://b2662mdew73va" path="res://assets/player2.png" id="1_3sgw8"]
-[ext_resource type="Script" path="res://Scenes/Player/player_2.gd" id="1_51s2a"]
+[ext_resource type="Script" path="res://Scripts/Player/player_2.gd" id="1_51s2a"]
 [ext_resource type="Script" path="res://Scripts/Player/BulletPool.gd" id="3_8mylf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ngyt"]
 size = Vector2(12, 14)
 
 [node name="Player2" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 0
 script = ExtResource("1_51s2a")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

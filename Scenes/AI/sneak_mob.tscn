@@ -1,8 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://cf4bsoll5cytr"]
+[gd_scene load_steps=15 format=3 uid="uid://cf4bsoll5cytr"]
 
 [ext_resource type="Script" path="res://Scripts/AI/sneak_mob.gd" id="1_s5uei"]
 [ext_resource type="Texture2D" uid="uid://d4l0naellnq6h" path="res://assets/mob.png" id="2_x273h"]
 [ext_resource type="Texture2D" uid="uid://dn4i4ulylcpgk" path="res://assets/death_animation.png" id="3_syg2o"]
+[ext_resource type="Script" path="res://Scripts/AI/AIBulletPool.gd" id="4_1igyk"]
+[ext_resource type="Script" path="res://Scripts/AI/ShootBullet.gd" id="4_vnd2a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h0dld"]
 size = Vector2(12, 11)
@@ -90,4 +92,15 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
 shape = SubResource("CircleShape2D_5a1i3")
 
+[node name="ShootBullet" type="Timer" parent="."]
+autostart = true
+script = ExtResource("4_vnd2a")
+
+[node name="Bullets" type="Node" parent="."]
+script = ExtResource("4_1igyk")
+
+[node name="SpawnPoint" type="Marker2D" parent="."]
+position = Vector2(0, 4)
+
 [connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]
+[connection signal="timeout" from="ShootBullet" to="." method="_on_shoot_bullet_timeout"]

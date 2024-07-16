@@ -3,13 +3,13 @@ extends CharacterBody2D
 var isAlive: bool = true;
 var speed: int = 20;
 var mob: bool = true;
-var health: int = 5;
+var health: int = 2;
 @onready var bar: ProgressBar = get_node("HealthBar");
 @onready var player: Node = get_node("../../Player");
 @onready var sprite: Sprite2D = get_node("GuardianSerpentOld");
 @onready var anim: AnimatedSprite2D = get_node("Anim")
 @onready var hud = get_node("../../HUD");
-
+@onready var bullet_pool: Node = get_node("Bullets");
 func _ready() -> void:
 	bar.max_value = health
 
@@ -47,8 +47,22 @@ func reset_mob(body: Node) -> void:
 func _on_player_detection_body_entered(body: Node2D):
 	if "Player" in body.name:
 		if self.visible and body.visible:
-			Game.player_hp -= 1
-			hud.update_health(Game.player_hp)
-			if Game.player_hp <= 0:
-				get_tree().reload_current_scene()
-				Game.player_hp = 10;
+			hit_player()
+
+func hit_player() -> void:
+	Game.player_hp -= 1
+	if Game.player_hp <= 0:
+		get_tree().reload_current_scene()
+		Game.player_hp = 10;
+
+func shoot_bullet() -> void:
+	# Cheap way to make the shot timer more spread out
+	if self.visible and randf() < 0.3:
+		var bulletTemp: Node = bullet_pool.get_bullet()
+		var direction: Vector2 = (player.global_position - get_node("SpawnPoint").global_position).normalized()
+		bulletTemp.velocity = direction * 140
+		bulletTemp.global_position = get_node("SpawnPoint").global_position
+		bulletTemp.show()
+		
+func _on_shoot_bullet_timeout():
+	shoot_bullet()
