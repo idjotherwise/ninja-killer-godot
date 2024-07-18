@@ -51,9 +51,6 @@ func _on_player_detection_body_entered(body: Node2D):
 
 func hit_player() -> void:
 	Game.player_hp -= 1
-	if Game.player_hp <= 0:
-		get_tree().reload_current_scene()
-		Game.player_hp = 10;
 
 func shoot_bullet() -> void:
 	# Cheap way to make the shot timer more spread out

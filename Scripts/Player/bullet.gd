@@ -4,7 +4,7 @@ var target: Node;
 var speed: float = 100;
 var direction: Vector2;
 
-func _process(delta):
+func _process(_delta):
 	self.rotation += 1
 	if target and target.visible:
 		direction = (self.target.global_position - self.global_position).normalized()

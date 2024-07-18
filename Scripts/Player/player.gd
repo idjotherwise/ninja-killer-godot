@@ -13,7 +13,7 @@ var controlls: Dictionary = {
 	"down": "ui_down",
 	"shoot": "shoot",
 }
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var inputDir: Vector2 = Vector2(
 		Input.get_axis(controlls["left"], controlls["right"]),
 		Input.get_axis(controlls["up"], controlls["down"])
@@ -49,6 +49,9 @@ func _physics_process(delta: float) -> void:
 		bulletTemp.velocity = direction * 100;
 		bulletTemp.show();
 		bulletTemp.get_node("PlayerBullet").play("spin");
+	
+	if Game.player_hp <= 0:
+		get_tree().change_scene_to_file("res://Scenes/game_over.tscn")
 	
 	velocity = inputDir * speed;
 	move_and_slide()
