@@ -30,4 +30,12 @@ offset_right = 331.0
 offset_bottom = 270.0
 text = "Retry"
 
+[node name="MainMenu" type="Button" parent="."]
+offset_left = 233.0
+offset_top = 278.0
+offset_right = 348.0
+offset_bottom = 309.0
+text = "Main Menu"
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MainMenu" to="." method="_on_main_menu_pressed"]

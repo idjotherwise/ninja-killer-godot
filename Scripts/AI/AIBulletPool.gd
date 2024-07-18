@@ -25,5 +25,4 @@ func get_bullet() -> Node:
 	
 func reset_bullet(bullet: Node) -> void:
 	bullet.position = Vector2(-10000, -10000)
-	#bullet.target = null
 	bullet.hide()

@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://dmmioo7nr2o5j"]
+[gd_scene load_steps=13 format=3 uid="uid://dmmioo7nr2o5j"]
 
 [ext_resource type="Script" path="res://Scripts/HUD/HUD.gd" id="1_6np3q"]
 [ext_resource type="Script" path="res://Scripts/HUD/Health.gd" id="2_ueasb"]
 [ext_resource type="Script" path="res://Scripts/HUD/Score.gd" id="3_eipdr"]
+[ext_resource type="Script" path="res://Scripts/HUD/Health2.gd" id="3_tt4si"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vrqpb"]
 bg_color = Color(0.992157, 0, 0, 1)
@@ -146,6 +147,20 @@ value = 10.0
 show_percentage = false
 script = ExtResource("2_ueasb")
 
+[node name="Health2" type="ProgressBar" parent="."]
+visible = false
+offset_left = 8.0
+offset_top = 9.0
+offset_right = 145.0
+offset_bottom = 23.0
+theme_override_styles/background = SubResource("StyleBoxFlat_vrqpb")
+theme_override_styles/fill = SubResource("StyleBoxFlat_uptg3")
+max_value = 10.0
+step = 1.0
+value = 10.0
+show_percentage = false
+script = ExtResource("3_tt4si")
+
 [node name="ScoreBox" type="MarginContainer" parent="."]
 anchors_preset = 12
 anchor_top = 1.0
@@ -201,3 +216,21 @@ libraries = {
 "": SubResource("AnimationLibrary_ikqac")
 }
 autoplay = "init"
+
+[node name="Player2Name" type="Label" parent="."]
+visible = false
+anchors_preset = -1
+offset_left = 10.0
+offset_top = 29.0
+offset_right = 84.0
+offset_bottom = 46.0
+theme_override_font_sizes/font_size = 12
+text = "Player 2"
+
+[node name="Player1Name" type="Label" parent="."]
+offset_left = 424.0
+offset_top = 29.0
+offset_right = 498.0
+offset_bottom = 46.0
+theme_override_font_sizes/font_size = 12
+text = "Player 1"

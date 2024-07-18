@@ -17,3 +17,7 @@ func _on_area_2d_body_entered(body):
 		if body.isAlive and body.visible and self.visible:
 			body.reset_mob(body)
 			get_parent().reset_bullet(self)
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited():
+	get_parent().reset_bullet(self)

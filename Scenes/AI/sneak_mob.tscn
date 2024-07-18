@@ -55,8 +55,8 @@ animations = [{
 radius = 9.0
 
 [node name="Enemy" type="CharacterBody2D"]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 10
+collision_mask = 10
 script = ExtResource("1_s5uei")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -75,7 +75,7 @@ offset_bottom = 26.0
 rotation = 1.5713
 theme_override_styles/background = SubResource("StyleBoxFlat_e7f01")
 theme_override_styles/fill = SubResource("StyleBoxFlat_v0vok")
-max_value = 5.0
+max_value = 2.0
 step = 1.0
 fill_mode = 3
 show_percentage = false
@@ -86,8 +86,8 @@ sprite_frames = SubResource("SpriteFrames_wppf5")
 animation = &"Death"
 
 [node name="PlayerDetection" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 4
+collision_layer = 8
+collision_mask = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
 shape = SubResource("CircleShape2D_5a1i3")
@@ -102,5 +102,12 @@ script = ExtResource("4_1igyk")
 [node name="SpawnPoint" type="Marker2D" parent="."]
 position = Vector2(0, 4)
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="ChangeDirTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
 [connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]
 [connection signal="timeout" from="ShootBullet" to="." method="_on_shoot_bullet_timeout"]
+[connection signal="timeout" from="ChangeDirTimer" to="." method="_on_change_dir_timer_timeout"]

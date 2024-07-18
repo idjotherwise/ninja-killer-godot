@@ -1,11 +1,12 @@
 extends CharacterBody2D
 
-
+@onready var tilemap = $"../TileMap";
 var speed: int = 75;
 var direction: Vector2 = Vector2(0, 1);
 @onready var bullet_pool: Node = get_node("Bullets");
 @onready var enemies_pool: Node = get_parent().get_node("Portal");
 var is_player: bool = true;
+var player_number: int = 2;
 var controlls: Dictionary = {
 	"left": "ui_left2",
 	"right": "ui_right2",
@@ -49,8 +50,13 @@ func _physics_process(delta: float) -> void:
 		bulletTemp.velocity = direction * 100;
 		bulletTemp.show();
 		bulletTemp.get_node("PlayerBullet").play("spin");
+		
+	if Game.player2_hp <= 0:
+		self.queue_free()
 	
 	velocity = inputDir * speed;
+	
 	move_and_slide()
+
 	
 

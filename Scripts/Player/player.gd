@@ -1,11 +1,12 @@
 extends CharacterBody2D
 
+#@onready var tilemap = $"../TileMap";
 var is_player: bool = true;
 var speed: int = 75;
 var direction: Vector2 = Vector2(0, 1);
 @onready var bullet_pool: Node = get_node("Bullets");
 @onready var enemies_pool: Node = get_parent().get_node("Portal");
-var player: bool = true;
+var player_number: int = 1;
 var controlls: Dictionary = {
 	"left": "ui_left",
 	"right": "ui_right",
@@ -54,5 +55,7 @@ func _physics_process(_delta: float) -> void:
 		get_tree().change_scene_to_file("res://Scenes/game_over.tscn")
 	
 	velocity = inputDir * speed;
+	
 	move_and_slide()
 	
+

@@ -15,5 +15,9 @@ func _process(delta):
 func _on_area_2d_body_entered(body):
 	if body.get("is_player"):
 		if body.visible and self.visible:
-			get_parent().get_parent().hit_player()
+			get_parent().get_parent().hit_player(body.player_number)
 			get_parent().reset_bullet(self)
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited():
+	get_parent().reset_bullet(self) # Replace with function body.

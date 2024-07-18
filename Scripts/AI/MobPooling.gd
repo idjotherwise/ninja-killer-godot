@@ -50,7 +50,7 @@ func reset_mob(mob: Node) -> void:
 
 func _on_timer_timeout() -> void:
 	var mobTemp: Node = get_mob()
-	var randX: int = randi_range(-50, 50)
-	var randY: int = randi_range(-50, 50)
+	var randX: int = randi_range(-25, 25)
+	var randY: int = randi_range(-25, 25)
 	mobTemp.global_position = self.global_position + Vector2(randX, randY)
 	mobTemp.show()
