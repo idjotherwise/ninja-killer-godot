@@ -15,6 +15,9 @@ func _ready() -> void:
 		mob_pool.append(mob)
 		add_child(mob)
 		
+func _process(delta):
+	if (get_parent().timeSurvived <= 9) and (get_parent().timeSurvived >= 1):
+		timer.wait_time = 10 - roundi(get_parent().timeSurvived/2)
 
 func get_mob() -> Node2D:
 	for mob in mob_pool:
