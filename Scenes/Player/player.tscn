@@ -1,11 +1,65 @@
-[gd_scene load_steps=5 format=3 uid="uid://6v6uv5d52cdf"]
+[gd_scene load_steps=9 format=3 uid="uid://6v6uv5d52cdf"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_lm4q6"]
-[ext_resource type="Texture2D" uid="uid://bywf47ekr7mgv" path="res://assets/player1.png" id="2_6ccmp"]
+[ext_resource type="Texture2D" uid="uid://cqjpuls0a5e2w" path="res://assets/ninja_small.png" id="2_hk2rk"]
 [ext_resource type="Script" path="res://Scripts/Player/BulletPool.gd" id="3_eteda"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oorg5"]
 size = Vector2(10, 13)
+
+[sub_resource type="Animation" id="Animation_03oj1"]
+resource_name = "WalkingDow"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Character:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_1w8ll"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Character:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="Animation" id="Animation_e7mnd"]
+resource_name = "WalkingRight"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Character:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [3, 4, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ii7oq"]
+_data = {
+"RESET": SubResource("Animation_1w8ll"),
+"WalkingDow": SubResource("Animation_03oj1"),
+"WalkingRight": SubResource("Animation_e7mnd")
+}
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 12
@@ -17,8 +71,10 @@ position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_oorg5")
 
 [node name="Character" type="Sprite2D" parent="."]
-texture = ExtResource("2_6ccmp")
-hframes = 4
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_hk2rk")
+hframes = 3
+vframes = 3
 frame = 3
 
 [node name="Bullets" type="Node" parent="."]
@@ -26,3 +82,8 @@ script = ExtResource("3_eteda")
 
 [node name="SpawnPoint" type="Marker2D" parent="."]
 position = Vector2(0, 10)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ii7oq")
+}

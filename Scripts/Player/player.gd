@@ -21,23 +21,25 @@ func _physics_process(_delta: float) -> void:
 		).normalized()
 		
 	if inputDir.x > 0:
-		# TODO: reenable these animations once there are multiple frames for the player
-		get_node("Character").frame = 2
+		get_node("Character").flip_h = true
+		get_node("AnimationPlayer").play("WalkingRight")
+		
 		# check if player is moving right
 		direction = inputDir
 	elif inputDir.x < 0:
+		get_node("Character").flip_h = false
 		# check if Character is moving left
-		get_node("Character").frame = 3
+		get_node("AnimationPlayer").play("WalkingRight")
 
 		direction = inputDir
 	elif inputDir.y > 0:
 		# moving down
-		get_node("Character").frame = 1
+		get_node("AnimationPlayer").play("WalkingDow")
 
 		direction = inputDir
 	elif inputDir.y < 0:
 		# moving up
-		get_node("Character").frame= 0
+		get_node("Character").frame= 6
 
 		direction = inputDir
 	get_node("SpawnPoint").position = direction * 5
