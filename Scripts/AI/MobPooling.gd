@@ -45,7 +45,7 @@ func reset_mob(mob: Node) -> void:
 	mob.global_position = Vector2(-10000, -10000)
 	mob.get_node("CollisionShape2D").disabled = false
 	mob.isAlive = true
-	mob.health = 5
+	mob.health = 2
 	mob.get_node("HealthBar").value = 0
 	mob.hide()
 	Game.score += 1

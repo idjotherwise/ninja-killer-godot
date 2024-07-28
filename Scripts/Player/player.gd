@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-#@onready var tilemap = $"../TileMap";
 var is_player: bool = true;
 var speed: int = 75;
 var direction: Vector2 = Vector2(0, 1);
@@ -20,28 +19,21 @@ func _physics_process(_delta: float) -> void:
 		Input.get_axis(controlls["up"], controlls["down"])
 		).normalized()
 		
-	if inputDir.x > 0:
+	if inputDir.x > 0: # RIGHT
 		get_node("Character").flip_h = true
-		get_node("AnimationPlayer").play("WalkingRight")
-		
-		# check if player is moving right
+		get_node("AnimationPlayer").play("WalkingDown")
 		direction = inputDir
-	elif inputDir.x < 0:
+	elif inputDir.x < 0: # LEFT
 		get_node("Character").flip_h = false
-		# check if Character is moving left
-		get_node("AnimationPlayer").play("WalkingRight")
-
+		get_node("AnimationPlayer").play("WalkingDown")
 		direction = inputDir
-	elif inputDir.y > 0:
-		# moving down
-		get_node("AnimationPlayer").play("WalkingDow")
-
+	elif inputDir.y > 0: # DOWN
+		get_node("AnimationPlayer").play("WalkingDown")
 		direction = inputDir
-	elif inputDir.y < 0:
-		# moving up
-		get_node("Character").frame= 6
-
+	elif inputDir.y < 0: # UP
+		get_node("AnimationPlayer").play("WalkingDown")
 		direction = inputDir
+		
 	get_node("SpawnPoint").position = direction * 5
 	if Input.is_action_just_pressed(controlls["shoot"]):
 		var nearest_mob = enemies_pool.nearest_enemy_to(self.global_position);

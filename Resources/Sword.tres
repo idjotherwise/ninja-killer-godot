@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Item" load_steps=6 format=3 uid="uid://co3bfjgytw1dk"]
+
+[ext_resource type="Script" path="res://Classes/item_class.gd" id="1_hpx3j"]
+[ext_resource type="Texture2D" uid="uid://l0i38lpkpvdo" path="res://assets/BG 11.png" id="1_w1c86"]
+[ext_resource type="Texture2D" uid="uid://dmgkiej7e6kgp" path="res://assets/#1 - Transparent Icons.png" id="2_5ap44"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xxdpj"]
+atlas = ExtResource("1_w1c86")
+region = Rect2(64, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h8hue"]
+atlas = ExtResource("2_5ap44")
+region = Rect2(64, 160, 32, 32)
+
+[resource]
+script = ExtResource("1_hpx3j")
+name = "Sword"
+sprite_texture = SubResource("AtlasTexture_h8hue")
+inventory_texture = SubResource("AtlasTexture_xxdpj")

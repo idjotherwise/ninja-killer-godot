@@ -1,15 +1,21 @@
-[gd_scene load_steps=13 format=3 uid="uid://dmmioo7nr2o5j"]
+[gd_scene load_steps=16 format=3 uid="uid://dmmioo7nr2o5j"]
 
 [ext_resource type="Script" path="res://Scripts/HUD/HUD.gd" id="1_6np3q"]
 [ext_resource type="Script" path="res://Scripts/HUD/Health.gd" id="2_ueasb"]
 [ext_resource type="Script" path="res://Scripts/HUD/Score.gd" id="3_eipdr"]
+[ext_resource type="Script" path="res://Scenes/HUD/Inventory.gd" id="3_f6qsv"]
 [ext_resource type="Script" path="res://Scripts/HUD/Health2.gd" id="3_tt4si"]
+[ext_resource type="Texture2D" uid="uid://l0i38lpkpvdo" path="res://assets/BG 11.png" id="3_v7cx8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vrqpb"]
 bg_color = Color(0.992157, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uptg3"]
 bg_color = Color(0.180392, 1, 0.184314, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pw5w3"]
+atlas = ExtResource("3_v7cx8")
+region = Rect2(352, 0, 32, 32)
 
 [sub_resource type="SystemFont" id="SystemFont_ryn1e"]
 subpixel_positioning = 0
@@ -134,11 +140,25 @@ _data = {
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_6np3q")
 
-[node name="Health" type="ProgressBar" parent="."]
-offset_left = 422.0
-offset_top = 11.0
-offset_right = 559.0
-offset_bottom = 25.0
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 10.0
+offset_bottom = 77.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="BeginningSpacer" type="Control" parent="HBoxContainer"]
+custom_minimum_size = Vector2(10, 2.08165e-12)
+layout_mode = 2
+
+[node name="Player1Container" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Health" type="ProgressBar" parent="HBoxContainer/Player1Container"]
+custom_minimum_size = Vector2(2.08165e-12, 5)
+layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_vrqpb")
 theme_override_styles/fill = SubResource("StyleBoxFlat_uptg3")
 max_value = 10.0
@@ -147,12 +167,29 @@ value = 10.0
 show_percentage = false
 script = ExtResource("2_ueasb")
 
-[node name="Health2" type="ProgressBar" parent="."]
+[node name="Player1Name" type="Label" parent="HBoxContainer/Player1Container"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Player 1"
+
+[node name="GridContainer" type="GridContainer" parent="HBoxContainer/Player1Container"]
+layout_mode = 2
+columns = 4
+script = ExtResource("3_f6qsv")
+
+[node name="CenterSpacer" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Player2Container" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="Health2" type="ProgressBar" parent="HBoxContainer/Player2Container"]
 visible = false
-offset_left = 8.0
-offset_top = 9.0
-offset_right = 145.0
-offset_bottom = 23.0
+custom_minimum_size = Vector2(2.08165e-12, 5)
+layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_vrqpb")
 theme_override_styles/fill = SubResource("StyleBoxFlat_uptg3")
 max_value = 10.0
@@ -160,6 +197,28 @@ step = 1.0
 value = 10.0
 show_percentage = false
 script = ExtResource("3_tt4si")
+
+[node name="Player2Name" type="Label" parent="HBoxContainer/Player2Container"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Player 2"
+
+[node name="GridContainer" type="GridContainer" parent="HBoxContainer/Player2Container"]
+visible = false
+layout_mode = 2
+columns = 4
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/Player2Container/GridContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Player2Container/GridContainer/PanelContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_pw5w3")
+
+[node name="EndSpacer" type="Control" parent="HBoxContainer"]
+custom_minimum_size = Vector2(10, 2.08165e-12)
+layout_mode = 2
 
 [node name="ScoreBox" type="MarginContainer" parent="."]
 anchors_preset = 12
@@ -216,21 +275,3 @@ libraries = {
 "": SubResource("AnimationLibrary_ikqac")
 }
 autoplay = "init"
-
-[node name="Player2Name" type="Label" parent="."]
-visible = false
-anchors_preset = -1
-offset_left = 10.0
-offset_top = 29.0
-offset_right = 84.0
-offset_bottom = 46.0
-theme_override_font_sizes/font_size = 12
-text = "Player 2"
-
-[node name="Player1Name" type="Label" parent="."]
-offset_left = 424.0
-offset_top = 29.0
-offset_right = 498.0
-offset_bottom = 46.0
-theme_override_font_sizes/font_size = 12
-text = "Player 1"

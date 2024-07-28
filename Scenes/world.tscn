@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cerphf285klbm"]
+[gd_scene load_steps=21 format=3 uid="uid://cerphf285klbm"]
 
 [ext_resource type="Script" path="res://Scripts/world.gd" id="1_r5t8c"]
 [ext_resource type="Texture2D" uid="uid://qhpxnfl2bxos" path="res://Bullet-Hell-Assets/floor tiles/dirt_full_new.png" id="1_vp4dh"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bojjoymvrwncq" path="res://Bullet-Hell-Assets/spawner.png" id="7_35w7b"]
 [ext_resource type="Texture2D" uid="uid://y3gsf3h0yqa3" path="res://Bullet-Hell-Assets/floor tiles/cobble_blood_3_new.png" id="7_tqlox"]
 [ext_resource type="PackedScene" uid="uid://dmmioo7nr2o5j" path="res://Scenes/HUD/hud.tscn" id="9_fpl6i"]
+[ext_resource type="PackedScene" uid="uid://5tvsg1wm7v80" path="res://Scenes/Items/item.tscn" id="12_owqqd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mj7cd"]
 texture = ExtResource("1_vp4dh")
@@ -116,6 +117,10 @@ navigation_polygon = SubResource("NavigationPolygon_a314l")
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
+
+[node name="Item" parent="." instance=ExtResource("12_owqqd")]
+visible = true
+position = Vector2(400, 200)
 
 [connection signal="timeout" from="Portal/Timer" to="Portal" method="_on_timer_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

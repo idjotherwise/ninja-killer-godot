@@ -1,27 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://6v6uv5d52cdf"]
+[gd_scene load_steps=10 format=3 uid="uid://6v6uv5d52cdf"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_lm4q6"]
 [ext_resource type="Texture2D" uid="uid://cqjpuls0a5e2w" path="res://assets/ninja_small.png" id="2_hk2rk"]
 [ext_resource type="Script" path="res://Scripts/Player/BulletPool.gd" id="3_eteda"]
+[ext_resource type="Script" path="res://Scenes/Player/Inventory.gd" id="4_jefeh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oorg5"]
 size = Vector2(10, 13)
-
-[sub_resource type="Animation" id="Animation_03oj1"]
-resource_name = "WalkingDow"
-length = 0.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Character:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [0, 1, 2]
-}
 
 [sub_resource type="Animation" id="Animation_1w8ll"]
 length = 0.001
@@ -35,7 +20,23 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [3]
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_03oj1"]
+resource_name = "WalkingDown"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Character:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
 }
 
 [sub_resource type="Animation" id="Animation_e7mnd"]
@@ -57,11 +58,11 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ii7oq"]
 _data = {
 "RESET": SubResource("Animation_1w8ll"),
-"WalkingDow": SubResource("Animation_03oj1"),
+"WalkingDown": SubResource("Animation_03oj1"),
 "WalkingRight": SubResource("Animation_e7mnd")
 }
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 12
 collision_mask = 8
 script = ExtResource("1_lm4q6")
@@ -75,7 +76,6 @@ scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_hk2rk")
 hframes = 3
 vframes = 3
-frame = 3
 
 [node name="Bullets" type="Node" parent="."]
 script = ExtResource("3_eteda")
@@ -87,3 +87,7 @@ position = Vector2(0, 10)
 libraries = {
 "": SubResource("AnimationLibrary_ii7oq")
 }
+
+[node name="Inventory" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4_jefeh")
